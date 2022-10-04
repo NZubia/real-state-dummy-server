@@ -32,14 +32,25 @@ router.post('/register', async function(req, res, next) {
   }
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/login', async function(req, res, next) {
   const userName = req.body.userName;
   const userPass = req.body.userPass;
 
   if (userName && userPass){
-    res.status(200).json({
-      "message": "OK"
-    })
+    const user = await User.findOne({
+      userName: userName,
+      password: userPass
+    });
+    if (user) {
+      res.status(200).json({
+        "message": "OK"
+      })
+    } else {
+      res.status(400).json({
+        "message": "User or password are wrong"
+      })
+    }
+
   } else {
     res.status(400).json({
       "message": "Several fields were missing"
