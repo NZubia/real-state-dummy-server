@@ -24,7 +24,7 @@ const HouseSchema = new mongoose.Schema({
         default: "HOUSE" // OR DEPARTMENT
     },
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     image: {

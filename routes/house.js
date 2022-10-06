@@ -4,7 +4,7 @@ var router = express.Router();
 const {
   House
 } = require('../models/house.model');
-const {User} = require("../models/user.model");
+const mongoose = require("mongoose");
 
 /* GET users listing. */
 router.get('/list', async function(req, res, next) {
@@ -114,7 +114,7 @@ router.get('/house-info', async function(req, res, next) {
 
   if (houseId){
     const house = await House.findOne({
-      _id: houseId
+      _id: mongoose.Types.ObjectId(houseId)
     });
 
     if (house) {
@@ -141,7 +141,7 @@ router.post('/add-fav', async function(req, res, next) {
 
   if (houseId){
     const house = await House.findOne({
-      _id: houseId
+      _id: mongoose.Types.ObjectId(houseId)
     });
     if (house) {
 
@@ -174,7 +174,7 @@ router.post('/delete-fav', async function(req, res, next) {
 
   if (houseId){
     const house = await House.findOne({
-      _id: houseId
+      _id: mongoose.Types.ObjectId(houseId)
     });
     if (house) {
 
