@@ -15,11 +15,13 @@ const HouseSchema = new mongoose.Schema({
     },
     houseType: {
         type: String,
-        required: true
+        required: true,
+        default: "RENT"// OR SALE
     },
     buildingType : {
         type: String,
-        required: true
+        required: true,
+        default: "HOUSE" // OR DEPARTMENT
     },
     price: {
         type: String,

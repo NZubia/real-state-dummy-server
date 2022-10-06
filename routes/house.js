@@ -4,6 +4,7 @@ var router = express.Router();
 const {
   House
 } = require('../models/house.model');
+const {User} = require("../models/user.model");
 
 /* GET users listing. */
 router.get('/list', async function(req, res, next) {
@@ -68,6 +69,44 @@ router.get('/list', async function(req, res, next) {
       "message": e.message
     })
   }
+});
+
+router.post('/create', async function(req, res, next) {
+  const title = req.body.title;
+  const description = req.body.description;
+  const address = req.body.address;
+  const houseType = req.body.houseType;
+  const buildingType = req.body.buildingType;
+  const price = req.body.price;
+  const image = req.body.image;
+  const houseLat = req.body.houseLat;
+  const houseLong = req.body.houseLong;
+  const ownerName = req.body.ownerName;
+  const ownerPhone = req.body.ownerPhone;
+
+
+    const newHouse = await new House({
+      title: title,
+      description: description,
+      address: address,
+      houseType: houseType,
+      buildingType : buildingType,
+      price: price,
+      image: image,
+      location: {
+        "type": "Point",
+        coordinates: [houseLong, houseLat]
+      },
+      ownerName: ownerName,
+      ownerPhone: ownerPhone
+    }).save()
+
+
+    res.status(200).json({
+      "message": "OK",
+      "obj": newHouse
+    })
+
 });
 
 router.get('/house-info', async function(req, res, next) {
