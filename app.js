@@ -9,6 +9,7 @@ const config = require('./config').config;
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var houseRouter = require('./routes/house');
 
 mongoose.connect(
     config.mongo.uri,
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/house', houseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
