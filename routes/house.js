@@ -202,7 +202,7 @@ router.post('/delete-fav', async function(req, res, next) {
   }
 });
 
-router.post('/get-fav', async function(req, res, next) {
+router.get('/get-fav', async function(req, res, next) {
 
     const favouriteHouses = await House.find({
       favourite: true
