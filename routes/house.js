@@ -11,9 +11,9 @@ router.get('/list', async function(req, res, next) {
   const houseType = req.query.houseType;
   const buildingType = req.query.buildingType;
   const minPrice = req.query.minPrice;
-  const maxPrice = req.body.maxPrice;
-  const houseLong = req.body.houseLong;
-  const houseLat = req.body.houseLat;
+  const maxPrice = req.query.maxPrice;
+  const houseLong = req.query.houseLong;
+  const houseLat = req.query.houseLat;
 
   let query;
 
